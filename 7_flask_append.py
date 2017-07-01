@@ -1,15 +1,20 @@
 """
-6_flask.py: Hello World in Flask, with template
-from Learn Python the Hard Way, ex 50"
+7_flask_append.py: Hello World in Flask, with template
+adapted from Learn Python the Hard Way, ex 50"
 """
+
+XXXX DOESN'T WORK
+
+
+# XX for Cloud9
+import sys; sys.path.append('./myenv/lib/python3.4/site-packages')
+
 import web
-from flask.ext.wtf import Form
-from wtforms import StringField, SubmitField
-from wtforms.validators import Required
+from wtforms import Form, BooleanField, StringField, PasswordField, validators
 
 class NameForm(Form):
-	name = StringField('Cat name?', validators=[Required()])
-	submit = SubmitField('Submit')
+	name = StringField('Cat name?') # , validators=[Required()])
+	# submit = SubmitField('Submit')
 
 urls = (
 	'/', 'index'
