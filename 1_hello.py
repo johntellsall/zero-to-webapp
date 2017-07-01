@@ -1,0 +1,3 @@
+beer = 'tasty'
+
+print(beer)
