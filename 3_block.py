@@ -1,5 +1,6 @@
+"3_block.py: webserver, show HTML from file"
+
 import os
-# 2.7: from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 import http.server
 import socketserver
 
@@ -7,10 +8,15 @@ import socketserver
 # pick up port from Cloud9 environment
 PORT_NUMBER = int(os.getenv('PORT', 8080))
 
-
+def get_html():
+	with open('data.html') as data_file:
+		html = data_file.read()
+	return html
+	
 def handle(handler):
-	# Send the html message
-	return "Hello World, woot!"
+	"Send the html message"
+	html = get_html()
+	return "Hello World, woot! <HR> {}".format(html)
 	
 
 class MyHandler(http.server.SimpleHTTPRequestHandler):
@@ -24,7 +30,6 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
 		return_bytes = return_str.encode('utf-8')
 		self.wfile.write( return_bytes )
 
-# 2.7: HTTPServer(('', PORT_NUMBER), myHandler).serve_forever()
 webserver = socketserver.TCPServer(("", PORT_NUMBER), MyHandler)
 webserver.serve_forever()
 	
